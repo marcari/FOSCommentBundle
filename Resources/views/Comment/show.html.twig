@@ -15,18 +15,22 @@
 {% set maxDepth = maxDepth|default(0) %}
 
 <div class="fos_comment_comment_show fos_comment_comment_depth_{{ depth }}" id="{{ comment.id }}">
-    <div class="fos_comment_comment_metas">
-        {% trans from 'FOSCommentBundle' %}fos_comment_comment_show_by{% endtrans %} {{ comment.authorName }} - {{ comment.createdAt|date }}
-        {% if comment is fos_comment_votable %}
-        <button data-url="{{ path("fos_comment_vote_add_up", {"commentId": comment.id}) }}" class="fos_comment_comment_vote">{% trans from 'FOSCommentBundle' %}fos_comment_comment_show_voteup{% endtrans %}</button>
-        <button data-url="{{ path("fos_comment_vote_add_down", {"commentId": comment.id}) }}" class="fos_comment_comment_vote">{% trans from 'FOSCommentBundle' %}fos_comment_comment_show_votedown{% endtrans %}</button>
-        <div class="fos_comment_comment_score">{{ comment.score }}</div>
-        {% endif %}
+    <div class="fos_comment_comment_single">
+        <div class="fos_comment_comment_metas">
+            <div class="wall-profile-picture"><a href="{{ comment.author.profileLink }}" target="_blank"><img src="{{ comment.author.picture|default(asset("bundles/igod/img/anonymous.jpg")) }}" alt="{{ comment.author }}"></a></div>
+            {% trans from 'FOSCommentBundle' %}fos_comment_comment_show_by{% endtrans %} <a class="fos_comment_comment_author" href="{{ comment.author.profileLink }}" target="_blank">{{ comment.authorName }}</a> - Le {{ comment.createdAt|date('d M Y à H:i:s') }}
+            {% if comment is fos_comment_votable %}
+            <div class="fos_comment_comment_score_container">
+                <button data-url="{{ path("fos_comment_vote_add_up", {"commentId": comment.id}) }}" class="fos_comment_comment_vote fos_comment_comment_vote_up">{% trans from 'FOSCommentBundle' %}fos_comment_comment_show_voteup{% endtrans %}</button>
+                <button data-url="{{ path("fos_comment_vote_add_down", {"commentId": comment.id}) }}" class="fos_comment_comment_vote fos_comment_comment_vote_down">{% trans from 'FOSCommentBundle' %}fos_comment_comment_show_votedown{% endtrans %}</button>
+                <div class="fos_comment_comment_score">{{ comment.score }}</div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="fos_comment_comment_body">
+            {{ comment.body }}
+        </div>
     </div>
-    <div class="fos_comment_comment_body">
-        {{ comment.body }}
-    </div>
-
     {% if maxDepth == 0 or depth < (maxDepth-1) %}
     <div class="fos_comment_comment_reply">
         <button data-url="{{ path('fos_comment_comment_create', {"threadIdentifier": comment.thread.identifier, "parentId": comment.id}) }}" data-name="{{ comment.authorName }}" class="fos_comment_comment_reply_show_form">{% trans from 'FOSCommentBundle' %}fos_comment_comment_show_reply{% endtrans %}</button>
