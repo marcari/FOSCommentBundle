@@ -9,7 +9,8 @@
 
 #}
 
-<div class="fos_comment_thread_show">
+<div class="fos_comment_thread_show comment_ecrire">
+    <img src="{{ asset("bundles/topcigod/img/element/btn_ecrire.png") }}" id="icon-ecrire" alt=""/>
 
     {% include "FOSCommentBundle:Comment:new.html.twig" with {"form": newCommentForm, "first": 0 == thread.numComments, "thread": thread} %}
 

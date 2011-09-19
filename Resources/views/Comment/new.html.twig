@@ -8,7 +8,7 @@
  with this source code in the file LICENSE.
 
 #}
-
+<!--
 {% block fos_comment_form_title %}
     {% if first %}
         <h3>{% trans from 'FOSCommentBundle' %}fos_comment_comment_new_headline_first{% endtrans %}</h3>
@@ -16,7 +16,7 @@
         <h3>{% trans from 'FOSCommentBundle' %}fos_comment_comment_new_headline{% endtrans %}</h3>
     {% endif %}
 {% endblock %}
-
+-->
 <form class="fos_comment_comment_form" action="{{ path("fos_comment_comment_create", { "threadIdentifier": thread.identifier }) }}" method="POST">
 
     {% block fos_comment_form_fields %}

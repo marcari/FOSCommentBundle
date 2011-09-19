@@ -17,10 +17,10 @@
 <div class="fos_comment_comment_show fos_comment_comment_depth_{{ depth }}" id="{{ comment.id }}">
     <div class="fos_comment_comment_single">
         <div class="fos_comment_comment_metas">
-            <div class="wall-profile-picture"><a href="{{ comment.author.profileLink }}" target="_blank"><img src="{{ comment.author.picture|default(asset("bundles/igod/img/anonymous.jpg")) }}" alt="{{ comment.author }}"></a></div>
             {% trans from 'FOSCommentBundle' %}fos_comment_comment_show_by{% endtrans %} <a class="fos_comment_comment_author" href="{{ comment.author.profileLink }}" target="_blank">{{ comment.authorName }}</a>
         </div>
         <div class="fos_comment_comment_body">
+            <div class="wall-profile-picture"><a href="{{ comment.author.profileLink }}" target="_blank"><img src="{{ comment.author.picture|default(asset("bundles/igod/img/anonymous.jpg")) }}" alt="{{ comment.author }}"></a></div>
             {{ comment.body }}
         </div>
     </div>
